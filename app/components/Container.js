@@ -5,8 +5,4 @@ function getState(state) {
   return { props: state };
 }
 
-function getActions() {
-  return actions;
-}
-
-export default (component) => connect(getState, getActions)(component);
+export default (component) => connect(getState, actions)(component);

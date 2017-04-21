@@ -49,4 +49,18 @@ body {
       text-decoration: underline;
     }
   }
+
+  button {
+    color: $white;
+    background-color: $primary-color;
+    border: none;
+    font-size: 1.2em;
+    border-radius: 4px;
+    font-weight: 700;
+    padding: $half-spacing $base-spacing;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

@@ -1,7 +1,10 @@
 const store = {
   campaigns: {
-    current: null,
-    data: [
+    current: 0,
+    available: [
+      {
+        title: 'All Campaigns',
+      },
       {
         id: 7656,
         title: 'Sincerely, Us',
@@ -9,7 +12,12 @@ const store = {
     ]
   },
   timeframe: {
-    value: 'previous_7_days',
+    current: 'previous_7_days',
+    available: [
+      'previous_1_days',
+      'previous_7_days',
+      'previous_30_days',
+    ],
   },
   dashboards: {
     current: 'traffic',
@@ -19,7 +27,7 @@ const store = {
       'sharing',
       'returns',
     ],
-  }
+  },
 };
 
 export default store;

@@ -12,6 +12,16 @@
   .sidebar__container {
     padding: $half-spacing;
   }
+
+  .sidebar__controls {
+    ul {
+      margin: 0;
+    }
+
+    button {
+      margin: $half-spacing 0;
+    }
+  }
 }
 
 .logo {
