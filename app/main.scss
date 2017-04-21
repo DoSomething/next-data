@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@import './components/toolbox';
+
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  background: $white;
+
+  h1, h2, h3, p, a {
+    margin: 0;
+    color: $black;
+    text-transform: lowercase;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1em;
+    font-weight: 400;
+
+    &.footnote {
+      color: $light-gray;
+      font-size: .8em;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.-highlighted {
+      font-weight: 700;
+    }
+  }
+}

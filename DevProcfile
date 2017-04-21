@@ -1,0 +1,2 @@
+web: nodemon --ignore 'app/*' --ignore 'public/*' server.js
+webpack: webpack --colors --watch

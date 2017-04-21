@@ -1,0 +1,43 @@
+@import '../toolbox.scss';
+
+.row {
+  width: 100%;
+
+  .column {
+    display: inline-block;
+
+    &.-full {
+      width: 100% !important;
+    }
+
+    .column__container {
+      margin: $half-spacing;
+      background: $light-background-color;
+    }
+  }
+
+  // @see http://codepen.io/mattlubner/pen/RWPYdx
+  .column:first-child:nth-last-child(1) {
+    width: 100%;
+  }
+
+  .column:first-child:nth-last-child(2),
+  .column:first-child:nth-last-child(2) ~ .column {
+    width: 50%;
+  }
+
+  .column:first-child:nth-last-child(3),
+  .column:first-child:nth-last-child(3) ~ .column {
+    width: 33.3333%;
+  }
+
+  .column:first-child:nth-last-child(4),
+  .column:first-child:nth-last-child(4) ~ .column {
+    width: 25%;
+  }
+
+  .column:first-child:nth-last-child(5),
+  .column:first-child:nth-last-child(5) ~ .column {
+    width: 20%;
+  }
+}
