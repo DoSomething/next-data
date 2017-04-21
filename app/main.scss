@@ -7,6 +7,10 @@ body {
   font-size: 18px;
   background: $white;
 
+  .-highlighted {
+    color: $primary-color !important;
+  }
+
   h1, h2, h3, p, a {
     margin: 0;
     color: $black;
@@ -43,10 +47,6 @@ body {
 
     &:hover {
       text-decoration: underline;
-    }
-
-    &.-highlighted {
-      font-weight: 700;
     }
   }
 }

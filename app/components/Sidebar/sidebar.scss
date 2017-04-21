@@ -48,6 +48,10 @@
 
     li {
       text-transform: lowercase;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
