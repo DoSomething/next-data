@@ -178,4 +178,10 @@ queries[names.CONVERSION_RATE_FAQ_TAB] = {
   responseHandler: ResponseHandlers.conversionRateBetweenTwo,
 };
 
-module.exports = queries;
+const wrappers = {};
+
+Object.keys(queries).each(queryName => () => {
+  wrappers[queryName] = JSON.parse(JSON.stringify(queries[queryName]));
+});
+
+module.exports = wrappers;

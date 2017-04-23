@@ -2,6 +2,7 @@ const console = require('keypunch');
 const Keen = require('keen-js');
 const Filters = require('../keen/Filters');
 const Queries = require('../keen/Queries');
+// const Cohorts = require('../keen/Cohorts');
 
 /**
  * Make a dashboard using the given client
@@ -15,8 +16,9 @@ const Queries = require('../keen/Queries');
 async function run(client, fields, campaignId) {
   console.info(`Calculating dashboard for ${campaignId || 'all campaigns'}`);
 
+  fields.unshift('group');
   const data = [];
-  const overall = {};
+  const overall = { group: 'overall' };
 
   function makeFilters(filters) {
     if (!filters) filters = [];
@@ -26,12 +28,12 @@ async function run(client, fields, campaignId) {
   }
 
   function standardizeQuery(query) {
-    query.timeframe = 'this_30_days';
+    query.timeframe = query.timeframe ? query.timeframe : 'this_30_days';
     query.filters = makeFilters(query.filters);
   }
 
-  function makeQuery(name, makePropsOnly = false) {
-    const props = Queries[name];
+  function makeQuery(name) {
+    const props = Queries[name]();
     if (!props) return;
 
     const hasMany = Array.isArray(props.queries);
@@ -43,8 +45,6 @@ async function run(client, fields, campaignId) {
     } else {
       standardizeQuery(props.query);
     }
-
-    if (makePropsOnly) return props;
 
     if (hasMany) {
       return props.queries.map(query => new Keen.Query(query.type, query.query));
@@ -67,7 +67,12 @@ async function run(client, fields, campaignId) {
 
   data.push(overall);
 
+  // ----------
+  // Calculate cohort stats second
+  // --------
+
   console.info(`Calculations for dashboard (${campaignId || 'all campaigns'}) is complete`);
+  console.log(Queries);
   return { fields, data };
 }
 
