@@ -12,13 +12,41 @@ const client = makeClient();
 const { run } = require('./dashboard');
 const conversionFields = require('./dashboard/conversions');
 
-async function start() {
-  await onReady();
-  const result = await run(client, conversionFields, '7656');
-  const csv = json2csv(result);
-  console.log(csv);
+const slack = require('slack');
+const bot = slack.rtm.client();
+const token = process.env.SLACK_TOKEN;
+const magicPhrase = process.env.MAGIC_PHRASE;
 
-  require('fs').writeFileSync('./data.csv', csv);
+async function calculate(campaignId) {
+  await onReady();
+  const result = await run(client, conversionFields, campaignId); //7656
+  const csv = json2csv(result);
+
+  return csv;
+  // require('fs').writeFileSync('./data.csv', csv);
+}
+
+async function start() {
+  bot.hello((message) => {
+    console.info('Bot started...');
+  });
+
+  bot.message(async (message) => {
+    const userMsg = message.text;
+    if (!userMsg.includes(magicPhrase)) return;
+
+    const channel = message.channel;
+    const campaignId = parseInt(userMsg.split(magicPhrase)[1] || null);
+    const data = await calculate(campaignId);
+
+    slack.chat.postMessage({
+      token,
+      channel,
+      text: data,
+    }, () => {});
+  });
+
+  bot.listen({ token });
 }
 
 start().catch(err => console.error(err));
