@@ -2,7 +2,7 @@ const console = require('keypunch');
 const Keen = require('keen-js');
 const Filters = require('../keen/Filters');
 const Queries = require('../keen/Queries');
-// const Cohorts = require('../keen/Cohorts');
+const ResponseHandlers = require('../keen/ResponseHandlers');
 
 /**
  * Make a dashboard using the given client
@@ -33,8 +33,9 @@ async function run(client, fields, campaignId) {
   }
 
   function makeQuery(name) {
-    const props = Queries[name]();
+    let props = Queries[name];
     if (!props) return;
+    props = props();
 
     const hasMany = Array.isArray(props.queries);
 
@@ -61,7 +62,7 @@ async function run(client, fields, campaignId) {
     if (!query) continue;
 
     const result = await client.perform(query);
-    const responseHandler = Queries[field].responseHandler;
+    const responseHandler = ResponseHandlers[Queries[field]().responseHandler];
     overall[field] = responseHandler(result);
   }
 
@@ -72,7 +73,6 @@ async function run(client, fields, campaignId) {
   // --------
 
   console.info(`Calculations for dashboard (${campaignId || 'all campaigns'}) is complete`);
-  console.log(Queries);
   return { fields, data };
 }
 

@@ -1,5 +1,4 @@
 const Filters = require('./Filters');
-const ResponseHandlers = require('./ResponseHandlers');
 const names = require('./QueryNames');
 
 const queries = {};
@@ -10,7 +9,7 @@ queries[names.NUMBER_OF_SIGNUPS] = {
     event_collection: 'action',
     filters: Filters.isSignup,
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_VISITORS] = {
@@ -19,7 +18,7 @@ queries[names.NUMBER_OF_UNIQUE_VISITORS] = {
     event_collection: 'action',
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.UNAFFILIATED_CONVERSION_RATE_OVERALL] = {
@@ -27,7 +26,7 @@ queries[names.UNAFFILIATED_CONVERSION_RATE_OVERALL] = {
     queries[names.NUMBER_OF_SIGNUPS],
     queries[names.NUMBER_OF_UNIQUE_VISITORS],
   ],
-  responseHandler: ResponseHandlers.conversionRateBetweenTwo,
+  responseHandler: 'conversionRateBetweenTwo',
 };
 
 queries[names.NUMBER_OF_SIGNUPS_SCHOLARSHIP_TAB] = {
@@ -36,7 +35,7 @@ queries[names.NUMBER_OF_SIGNUPS_SCHOLARSHIP_TAB] = {
     event_collection: 'action',
     filters: [Filters.isSignup, Filters.onScholarshipTab],
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_SCHOLARSHIP_TAB] = {
@@ -46,7 +45,7 @@ queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_SCHOLARSHIP_TAB] = {
     filters: [Filters.onScholarshipTab, Filters.isAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_SCHOLARSHIP_TAB] = {
@@ -56,7 +55,7 @@ queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_SCHOLARSHIP_TAB] = {
     filters: [Filters.onScholarshipTab, Filters.notAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.CONVERSION_RATE_SCHOLARSHIP_TAB] = {
@@ -64,7 +63,7 @@ queries[names.CONVERSION_RATE_SCHOLARSHIP_TAB] = {
     queries[names.NUMBER_OF_SIGNUPS_SCHOLARSHIP_TAB],
     queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_SCHOLARSHIP_TAB],
   ],
-  responseHandler: ResponseHandlers.conversionRateBetweenTwo,
+  responseHandler: 'conversionRateBetweenTwo',
 };
 
 queries[names.NUMBER_OF_SIGNUPS_COMMUNITY_TAB] = {
@@ -73,7 +72,7 @@ queries[names.NUMBER_OF_SIGNUPS_COMMUNITY_TAB] = {
     event_collection: 'action',
     filters: [Filters.isSignup, ...Filters.onCommunityTab],
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_COMMUNITY_TAB] = {
@@ -83,7 +82,7 @@ queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_COMMUNITY_TAB] = {
     filters: [...Filters.onCommunityTab, Filters.isAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_COMMUNITY_TAB] = {
@@ -93,7 +92,7 @@ queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_COMMUNITY_TAB] = {
     filters: [...Filters.onCommunityTab, Filters.notAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.CONVERSION_RATE_COMMUNITY_TAB] = {
@@ -101,7 +100,7 @@ queries[names.CONVERSION_RATE_COMMUNITY_TAB] = {
     queries[names.NUMBER_OF_SIGNUPS_COMMUNITY_TAB],
     queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_COMMUNITY_TAB],
   ],
-  responseHandler: ResponseHandlers.conversionRateBetweenTwo,
+  responseHandler: 'conversionRateBetweenTwo',
 };
 
 queries[names.NUMBER_OF_SIGNUPS_ACTION_TAB] = {
@@ -110,7 +109,7 @@ queries[names.NUMBER_OF_SIGNUPS_ACTION_TAB] = {
     event_collection: 'action',
     filters: [Filters.isSignup, Filters.onActionTab],
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_ACTION_TAB] = {
@@ -120,7 +119,7 @@ queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_ACTION_TAB] = {
     filters: [Filters.onActionTab, Filters.isAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_ACTION_TAB] = {
@@ -130,7 +129,7 @@ queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_ACTION_TAB] = {
     filters: [Filters.onActionTab, Filters.notAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.CONVERSION_RATE_ACTION_TAB] = {
@@ -138,7 +137,7 @@ queries[names.CONVERSION_RATE_ACTION_TAB] = {
     queries[names.NUMBER_OF_SIGNUPS_ACTION_TAB],
     queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_ACTION_TAB],
   ],
-  responseHandler: ResponseHandlers.conversionRateBetweenTwo,
+  responseHandler: 'conversionRateBetweenTwo',
 };
 
 queries[names.NUMBER_OF_SIGNUPS_FAQ_TAB] = {
@@ -147,7 +146,7 @@ queries[names.NUMBER_OF_SIGNUPS_FAQ_TAB] = {
     event_collection: 'action',
     filters: [Filters.isSignup, Filters.onFaqTab],
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_FAQ_TAB] = {
@@ -157,7 +156,7 @@ queries[names.NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_FAQ_TAB] = {
     filters: [Filters.onFaqTab, Filters.isAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_FAQ_TAB] = {
@@ -167,7 +166,7 @@ queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_FAQ_TAB] = {
     filters: [Filters.onFaqTab, Filters.notAffiliated],
     target_property: 'user.session.id',
   },
-  responseHandler: ResponseHandlers.default,
+  responseHandler: 'default',
 };
 
 queries[names.CONVERSION_RATE_FAQ_TAB] = {
@@ -175,13 +174,13 @@ queries[names.CONVERSION_RATE_FAQ_TAB] = {
     queries[names.NUMBER_OF_SIGNUPS_FAQ_TAB],
     queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_FAQ_TAB],
   ],
-  responseHandler: ResponseHandlers.conversionRateBetweenTwo,
+  responseHandler: 'conversionRateBetweenTwo',
 };
 
 const wrappers = {};
 
-Object.keys(queries).each(queryName => () => {
-  wrappers[queryName] = JSON.parse(JSON.stringify(queries[queryName]));
+Object.keys(queries).forEach(queryName => {
+  wrappers[queryName] = () => JSON.parse(JSON.stringify(queries[queryName]));
 });
 
 module.exports = wrappers;
