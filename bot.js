@@ -19,16 +19,33 @@ const magicPhrase = process.env.MAGIC_PHRASE;
 
 async function calculate(campaignId) {
   await onReady();
-  const result = await run(client, conversionFields, campaignId);
+  const result = await run(client, conversionFields, campaignId); //7656
   const csv = json2csv(result);
 
-  require('fs').writeFileSync('./data.csv', csv);
   return csv;
 }
 
-calculate('7656').catch(err => console.error(err));
+async function start() {
+  bot.hello((message) => {
+    console.info('Bot started...');
+  });
 
-//TODO
-// - list of cohort queries, use the same naming scheme
-// - the cohort function wrapper handles placing the vars in it
-// - what generates the cohorts? is that in the dashboard/index.js for now?
+  bot.message(async (message) => {
+    const userMsg = message.text;
+    if (!userMsg.includes(magicPhrase)) return;
+
+    const channel = message.channel;
+    const campaignId = parseInt(userMsg.split(magicPhrase)[1] || null);
+    const data = await calculate(campaignId);
+
+    slack.chat.postMessage({
+      token,
+      channel,
+      text: data,
+    }, () => {});
+  });
+
+  bot.listen({ token });
+}
+
+start().catch(err => console.error(err));

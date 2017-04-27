@@ -1,1 +1,1 @@
-socket: node app.js
+socket: node bot.js
