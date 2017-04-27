@@ -7,5 +7,22 @@ This repo is a dashboard for all of the Keen.Io data we collect on Phoenix Next.
 ```sh
 $ npm install
 $ cp .env.example .env
-$ npm start
+```
+
+## Standalone app
+
+```sh
+$ node app.js
+```
+
+## Slack Bot
+
+```sh
+$ node bot.js
+```
+
+## Usage
+
+```
+${process.env.MAGIC_PHRASE} [campaignId||null]
 ```
