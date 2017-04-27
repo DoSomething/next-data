@@ -1,6 +1,7 @@
 module.exports = {
   NUMBER_OF_SIGNUPS: '# of signups',
   NUMBER_OF_UNIQUE_VISITORS: '# of unique affiliated visitors',
+  NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS: '# of unique unaffiliated visitors',
   UNAFFILIATED_CONVERSION_RATE_OVERALL: 'unaffiliated conversion rate overall',
   NUMBER_OF_SIGNUPS_SCHOLARSHIP_TAB: '# of signups on scholarship tab',
   NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_SCHOLARSHIP_TAB: '# of unique affiliated visitors on scholarship tab',

@@ -21,10 +21,20 @@ queries[names.NUMBER_OF_UNIQUE_VISITORS] = {
   responseHandler: 'default',
 };
 
+queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS] = {
+  type: 'count_unique',
+  query: {
+    event_collection: 'action',
+    filters: Filters.notAffiliated,
+    target_property: 'user.session.id',
+  },
+  responseHandler: 'default',
+};
+
 queries[names.UNAFFILIATED_CONVERSION_RATE_OVERALL] = {
   queries: [
     queries[names.NUMBER_OF_SIGNUPS],
-    queries[names.NUMBER_OF_UNIQUE_VISITORS],
+    queries[names.NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS],
   ],
   responseHandler: 'conversionRateBetweenTwo',
 };
