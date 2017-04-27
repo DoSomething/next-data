@@ -38,11 +38,15 @@ async function start() {
     const campaignId = parseInt(userMsg.split(magicPhrase)[1] || null);
     const data = await calculate(campaignId);
 
-    slack.chat.postMessage({
+    slack.files.upload({
       token,
-      channel,
-      text: data,
-    }, () => {});
+      content: data,
+      filename: `phoenix-next-campaign-${campaignId || 'all'}.csv`,
+      channels: channel,
+    }, (err, msg) => {
+      if (err) console.error('error uploading csv');
+      else console.info('csv posted to slack');
+    });
   });
 
   bot.listen({ token });
