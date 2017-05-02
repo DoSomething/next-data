@@ -4,6 +4,8 @@ const Filters = require('../keen/Filters');
 const Queries = require('../keen/Queries');
 const ResponseHandlers = require('../keen/ResponseHandlers');
 
+const INCEPTION = new Date("2017-04-17T00:00:00.000Z").getTime();
+
 /**
  * Make a dashboard using the given client
  * and optional campaign filter.
@@ -29,7 +31,13 @@ async function run(client, fields, campaignId) {
 
   function standardizeQuery(query, overrides) {
     query.filters = makeFilters(query.filters);
-    query.timeframe = query.timeframe ? query.timeframe : 'this_30_days';
+
+    const defaultTimeframe = {
+      start: new Date(INCEPTION).toUTCString(),
+      end: new Date().toUTCString(),
+    };
+
+    query.timeframe = query.timeframe ? query.timeframe : defaultTimeframe;
 
     if (!overrides) return;
 
@@ -42,23 +50,33 @@ async function run(client, fields, campaignId) {
     }
   }
 
-  function makeQuery(name, overrides, isStep) {
+  function makeQuery(name, overrides) {
     let props = Queries[name];
     if (!props) return;
     props = props();
 
     const hasMany = Array.isArray(props.queries);
+    const isFunnel = props.type === 'funnel';
 
-    if (hasMany) {
-      for (const { query } of props.queries) {
-        standardizeQuery(query, overrides);
+    function standardize(queries, applyOverrides) {
+      if (Array.isArray(queries)) {
+        queries = queries.map(query => query.query);
+      } else {
+        queries = [queries];
       }
-    } else {
-      standardizeQuery(props.query, overrides);
+
+      return queries.map(query => {
+        if (applyOverrides) return standardizeQuery(query, overrides);
+        else return standardizeQuery(query);
+      });
     }
 
-    if (isStep) {
-      return props.queries || [props.query];
+    standardize(hasMany ? props.queries : props.query, true);
+
+    if (isFunnel) {
+      const funnelSteps = standardize(props.funnelSteps, false);
+      const steps = [...(hasMany ? props.queries : [props.query]), ...funnelSteps];
+      return new Keen.Query('funnel', { steps });
     }
 
     if (hasMany) {
@@ -81,7 +99,6 @@ async function run(client, fields, campaignId) {
   for (const field of fields) {
     const query = makeQuery(field);
     if (!query) continue;
-
     const result = await client.perform(query);
     const responseHandler = ResponseHandlers[Queries[field]().responseHandler];
     overall[field] = responseHandler(result);
@@ -93,8 +110,7 @@ async function run(client, fields, campaignId) {
   // Calculate signups cohort stats second
   // --------
   const WEEK = 6048e5;
-  const INCEPTION = new Date("2017-04-17T00:00:00.000Z").getTime();
-  const totalCohorts = Math.floor((new Date() - INCEPTION) / WEEK);
+  const totalCohorts = Math.ceil((new Date() - INCEPTION) / WEEK);
 
   for (let cohortIndex = 0; cohortIndex < totalCohorts; cohortIndex++) {
     const start = INCEPTION + (cohortIndex * WEEK);

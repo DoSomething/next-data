@@ -187,6 +187,15 @@ queries[names.CONVERSION_RATE_FAQ_TAB] = {
   responseHandler: 'conversionRateBetweenTwo',
 };
 
+queries[names.RETURN_TO_SITE_TWICE] = {
+  type: 'funnel',
+  query: queries[names.NUMBER_OF_SIGNUPS],
+  funnelQueries: [
+    
+  ],
+  responseHandler: '',
+};
+
 const wrappers = {};
 
 Object.keys(queries).forEach(queryName => {

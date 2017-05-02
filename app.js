@@ -26,7 +26,7 @@ async function calculate(campaignId) {
   return csv;
 }
 
-calculate('7656').catch(err => console.error(err));
+calculate(7656).catch(err => console.error(err));
 
 //TODO
 // - list of cohort queries, use the same naming scheme

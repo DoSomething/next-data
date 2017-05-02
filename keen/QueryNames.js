@@ -19,4 +19,5 @@ module.exports = {
   NUMBER_OF_UNIQUE_AFFILIATED_VISITORS_FAQ_TAB: '# of unique affiliated visitors on faq tab',
   NUMBER_OF_UNIQUE_UNAFFILIATED_VISITORS_FAQ_TAB: '# of unique affiliated visitors on faq tab',
   CONVERSION_RATE_FAQ_TAB: 'conversion rate on faq tab',
+  RETURN_TO_SITE_TWICE: 'return to site 2x',
 };
