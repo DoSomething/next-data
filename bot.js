@@ -19,7 +19,7 @@ const magicPhrase = process.env.MAGIC_PHRASE;
 
 async function calculate(campaignId) {
   await onReady();
-  const result = await run(client, conversionFields, campaignId); //7656
+  const result = await run(client, conversionFields, campaignId);
   const csv = json2csv(result);
 
   return csv;
@@ -32,7 +32,7 @@ async function start() {
 
   bot.message(async (message) => {
     const userMsg = message.text;
-    if (!userMsg.includes(magicPhrase)) return;
+    if (!userMsg || !userMsg.includes(magicPhrase)) return;
 
     const channel = message.channel;
     const campaignId = parseInt(userMsg.split(magicPhrase)[1] || null);
@@ -42,6 +42,7 @@ async function start() {
       token,
       content: data,
       filename: `phoenix-next-campaign-${campaignId || 'all'}.csv`,
+      filetype: 'csv',
       channels: channel,
     }, (err, msg) => {
       if (err) console.error('error uploading csv');
