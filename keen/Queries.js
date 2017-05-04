@@ -191,7 +191,10 @@ queries[names.RETURN_TO_SITE_TWICE] = {
   type: 'funnel',
   query: queries[names.NUMBER_OF_SIGNUPS],
   funnelQueries: [
-    
+    {
+      event_collection: 'action',
+      type: 'count_unique',
+    }
   ],
   responseHandler: '',
 };

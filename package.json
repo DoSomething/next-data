@@ -4,19 +4,29 @@
   "description": "Phoenix Next Data",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
-  },
-  "engines": {
-    "node": "7.8.0"
+    "start": "webpack-dev-server --port 5000",
+    "build": "NODE_ENV=production webpack"
   },
   "author": "DoSomething.org",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^4.0.0",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "json2csv": "^3.7.3",
     "keen-js": "^3.4.1",
-    "keypunch": "^1.0.5",
-    "slack": "^8.3.0"
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.17.0",
+    "uglify-js": "^2.8.22",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }
