@@ -1,1 +1,0 @@
-socket: node bot.js
