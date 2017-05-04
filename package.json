@@ -4,7 +4,8 @@
   "description": "Phoenix Next Data",
   "main": "server.js",
   "scripts": {
-    "start": "webpack-dev-server --port 5000",
+    "start": "PORT=5000 webpack-dev-server",
+    "start-prod": "webpack-dev-server",
     "build": "NODE_ENV=production webpack"
   },
   "author": "DoSomething.org",
@@ -28,6 +29,6 @@
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "git+https://git@github.com/deadlybutter/webpack-dev-server-heroku.git"
   }
 }
