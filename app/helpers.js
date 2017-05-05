@@ -30,3 +30,21 @@ export function pageHelper(page) {
       break;
   }
 }
+
+/**
+ * Modified from https://gist.github.com/caseyjustus/1166258#gistcomment-230983
+ */
+export function calculateMedian(values) {
+  values.sort((a,b) => a - b);
+  const half = Math.floor(values.length / 2);
+
+  if (values.length % 2) return values[half];
+  else return (values[half-1] + values[half]) / 2;
+}
+
+export function totalGreaterThan(values, max) {
+  return values.reduce((acc, item) => {
+    if (item >= max) acc++;
+    return acc;
+  }, 0);
+}

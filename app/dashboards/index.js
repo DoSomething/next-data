@@ -1,6 +1,7 @@
 import json2csv from 'json2csv';
 import Executor from '../Executor';
 import conversion from './conversion';
+import returns from './returns';
 import { makeCsvDownload } from '../helpers';
 
 let processing = false;
@@ -20,6 +21,7 @@ export async function make(client, campaignId, dashboard) {
   let queries = [];
   switch (dashboard) {
     case 'conversion': queries = conversion; break;
+    case 'returns': queries = returns; break;
   }
 
   const computedDashboard = await Executor(client, campaignId, queries);

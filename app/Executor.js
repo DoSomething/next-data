@@ -11,6 +11,7 @@ function runComputation(computation, row) {
     case 'divide':
       const a = row[computation.values[0]];
       const b = row[computation.values[1]];
+      return (a / b).toFixed(2) * 100;
       return Math.round((a / b).toFixed(2) * 100)
   }
 }
@@ -53,7 +54,9 @@ export default async function execute(client, campaignId, queries) {
     const row = { group: `${start.toString()}-${end.toString()}` };
 
     for (const config of queries) {
-      const { Query, options, column, computation } = config;
+      const { Query, options, column, computation, skipCohort } = config;
+
+      if (skipCohort) continue;
 
       let result = null;
 
@@ -69,7 +72,7 @@ export default async function execute(client, campaignId, queries) {
       row[column] = result;
     }
 
-    data.push(row);
+    if (Object.keys(row) > 1) data.push(row);
   }
 
   return { data, fields };
