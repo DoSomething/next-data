@@ -72,7 +72,7 @@ export default async function execute(client, campaignId, queries) {
       row[column] = result;
     }
 
-    if (Object.keys(row).length > 1) data.push(row);
+    data.push(row);
   }
 
   return { data, fields };
