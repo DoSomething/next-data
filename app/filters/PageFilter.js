@@ -14,6 +14,6 @@ class PageFilter extends Filter {
 
 PageFilter.ACTION = '/action';
 PageFilter.FAQ = '/pages/faq';
-PageFilter.SCHOLARSHIP = '/pages/scholarships';
+PageFilter.SCHOLARSHIP = '/pages/scholarship';
 
 export default PageFilter;
