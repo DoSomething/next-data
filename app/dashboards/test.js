@@ -12,6 +12,11 @@ const test = [
     options: { page: 'community' },
     column: 'total community signups',
   },
+  {
+    Query: VisitorQuery,
+    options: { affiliated: false, page: 'scholarship,scholarships' },
+    column: 'total unaffiliated scholarship visitors',
+  },
 ];
 
 export default test;
