@@ -30,22 +30,22 @@ const conversion = [
   },
   {
     Query: SignupQuery,
-    options: { page: 'scholarship,scholarships' },
+    options: { page: 'scholarship' },
     column: 'total scholarship page signups',
   },
   {
     Query: EntranceSignupsQuery,
-    options: { page: 'scholarship,scholarships' },
+    options: { page: 'scholarship' },
     column: 'scholarship entrance signups',
   },
   {
     Query: SignupQuery,
-    options: { page: 'faq,faqs' },
+    options: { page: 'faq' },
     column: 'total faq page signups',
   },
   {
     Query: EntranceSignupsQuery,
-    options: { page: 'faq,faqs' },
+    options: { page: 'faq' },
     column: 'faq entrance signups',
   },
   {
@@ -65,12 +65,12 @@ const conversion = [
   },
   {
     Query: VisitorQuery,
-    options: { affiliated: false, page: 'scholarship,scholarships' },
+    options: { affiliated: false, page: 'scholarship' },
     column: 'total unaffiliated scholarship visitors',
   },
   {
     Query: VisitorQuery,
-    options: { affiliated: false, page: 'faq,faqs' },
+    options: { affiliated: false, page: 'faq' },
     column: 'total unaffiliated faq visitors',
   },
   {
