@@ -5,15 +5,11 @@ class PageFilter extends Filter {
     super();
 
     if (page) {
-      const variants = page.split(',');
-
-      for (const variant of variants) {
-        this._addFilter(
-          'routing.page',
-          didVisit ? operators.equal : operators.notEqual,
-          variant,
-        );
-      }
+      this._addFilter(
+        'routing.page',
+        didVisit ? operators.contains : operators.doesNotContain,
+        page,
+      );
     }
   }
 }
