@@ -1,5 +1,6 @@
 import SignupQuery from '../queries/SignupQuery';
 import EntranceSignupsQuery from '../queries/EntranceSignupsQuery';
+import VisitorQuery from '../queries/VisitorQuery';
 
 const test = [
   {
