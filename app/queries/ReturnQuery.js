@@ -2,7 +2,7 @@ import Keen from 'keen-js';
 import { Query } from './_base';
 import AffiliatedFilter from '../filters/AffiliatedFilter';
 import AppInitFilter from '../filters/AppInitFilter';
-import { calculateMedian, totalGreaterThan } from '../helpers';
+import { calculateMedian, totalGreaterThan, totalEqualTo } from '../helpers';
 
 class ReturnQuery extends Query {
   constructor(client, options = { question: 'median' }) {
@@ -24,9 +24,10 @@ class ReturnQuery extends Query {
 
     switch (this.options.question) {
       case 'median': return calculateMedian(data);
-      case '1x': return data.length;
-      case '2x': return totalGreaterThan(data, 2);
-      case '3x': return totalGreaterThan(data, 3);
+      case '1x': return totalEqualTo(data, 1)
+      case '2x': return totalEqualTo(data, 2);
+      case '3x': return totalEqualTo(data, 3);
+      case '4x+': return totalGreaterThan(data, 4);
       default: return result;
     }
   }

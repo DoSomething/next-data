@@ -38,4 +38,9 @@ export class Query {
 
     return props;
   }
+
+  inheritQuery(query) {
+    this.timeframe = query.timeframe;
+    this.filers = [...this.filters, ...query.filters];
+  }
 }

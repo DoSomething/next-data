@@ -48,3 +48,10 @@ export function totalGreaterThan(values, max) {
     return acc;
   }, 0);
 }
+
+export function totalEqualTo(values, max) {
+  return values.reduce((acc, item) => {
+    if (item === max) acc++;
+    return acc;
+  }, 0);
+}

@@ -15,7 +15,7 @@ client.perform = async (query) => {
 };
 
 Keen.ready(() => {
-  for (const config of ['conversion', 'returns']) {
+  for (const config of ['conversion', 'returns', 'test']) {
     const onClick = () => {
       const campaignIdInput = document.getElementById('config-campaign-id');
       const campaignId = parseInt(campaignIdInput.value) || null;
