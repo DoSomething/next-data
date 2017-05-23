@@ -3,7 +3,7 @@ import { Query } from './_base';
 import AffiliatedFilter from '../filters/AffiliatedFilter';
 import AppInitFilter from '../filters/AppInitFilter';
 import SignupFilter from '../filters/SignupFilter';
-import { pageHelper } from '../helpers';
+import PageFilter from '../filters/PageFilter';
 
 class EntranceStepOne extends Query {
   constructor(client, options = { page: null }) {
@@ -11,7 +11,7 @@ class EntranceStepOne extends Query {
 
     this.addFilter(new AppInitFilter());
     this.addFilter(new AffiliatedFilter(false));
-    pageHelper.call(this, options.page);
+    this.addFilter(new PageFilter(options.page));
   }
 }
 

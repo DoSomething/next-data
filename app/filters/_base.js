@@ -1,5 +1,6 @@
 export const operators = {
   equal: 'eq',
+  notEqual: 'ne',
   contains: 'contains',
   doesNotContain: 'not_contains',
 };

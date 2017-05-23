@@ -1,14 +1,14 @@
 import Keen from 'keen-js';
 import { Query } from './_base';
 import AffiliatedFilter from '../filters/AffiliatedFilter';
-import { pageHelper } from '../helpers';
+import PageFilter from '../filters/PageFilter';
 
 class VisitorQuery extends Query {
   constructor(client, options = { page: null, affiliated: false }) {
     super(client, options);
 
     this.addFilter(new AffiliatedFilter(options.affiliated));
-    pageHelper.call(this, options.page);
+    this.addFilter(new PageFilter(options.page));
   }
 
   async perform() {

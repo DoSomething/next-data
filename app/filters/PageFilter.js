@@ -4,16 +4,14 @@ class PageFilter extends Filter {
   constructor(page, didVisit = true) {
     super();
 
-    this._addFilter(
-      'page.path',
-      didVisit ? operators.contains : operators.doesNotContain,
-      page,
-    );
+    if (page) {
+      this._addFilter(
+        'routing.page',
+        didVisit ? operators.equal : operators.notEqual,
+        page,
+      );
+    }
   }
 }
-
-PageFilter.ACTION = '/action';
-PageFilter.FAQ = '/pages/faq';
-PageFilter.SCHOLARSHIP = '/pages/scholarship';
 
 export default PageFilter;

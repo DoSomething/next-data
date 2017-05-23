@@ -12,25 +12,6 @@ export function makeCsvDownload(csv, title = 'data') {
   a.click();
 }
 
-export function pageHelper(page) {
-  switch (page) {
-    case 'community':
-      this.addFilter(new PageFilter(PageFilter.ACTION, false));
-      this.addFilter(new PageFilter(PageFilter.FAQ, false));
-      this.addFilter(new PageFilter(PageFilter.SCHOLARSHIP, false));
-      break;
-    case 'action':
-      this.addFilter(new PageFilter(PageFilter.ACTION));
-      break;
-    case 'scholarship':
-      this.addFilter(new PageFilter(PageFilter.SCHOLARSHIP));
-      break;
-    case 'faq':
-      this.addFilter(new PageFilter(PageFilter.FAQ));
-      break;
-  }
-}
-
 /**
  * Modified from https://gist.github.com/caseyjustus/1166258#gistcomment-230983
  */

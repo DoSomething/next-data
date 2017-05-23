@@ -1,14 +1,14 @@
 import Keen from 'keen-js';
 import { Query } from './_base';
 import SignupFilter from '../filters/SignupFilter';
-import { pageHelper } from '../helpers';
+import PageFilter from '../filters/PageFilter';
 
 class SignupQuery extends Query {
   constructor(client, options = { page: null }) {
     super(client, options);
 
     this.addFilter(new SignupFilter());
-    pageHelper.call(this, options.page);
+    this.addFilter(new PageFilter(options.page));
   }
 
   async perform() {
