@@ -1,19 +1,7 @@
 import Keen from 'keen-js';
 import { Query } from './_base';
-import AffiliatedFilter from '../filters/AffiliatedFilter';
-import AppInitFilter from '../filters/AppInitFilter';
+import EntranceQuery from './EntranceQuery';
 import SignupFilter from '../filters/SignupFilter';
-import PageFilter from '../filters/PageFilter';
-
-class EntranceStepOne extends Query {
-  constructor(client, options = { page: null }) {
-    super(client, options);
-
-    this.addFilter(new AppInitFilter());
-    this.addFilter(new AffiliatedFilter(false));
-    this.addFilter(new PageFilter(options.page));
-  }
-}
 
 class EntranceStepTwo extends Query {
   constructor(client, options = { page: null }) {
@@ -27,7 +15,7 @@ class EntranceSignupsQuery extends Query {
   constructor(client, options = { page: null }) {
     super(client, options);
 
-    this.stepOne = new EntranceStepOne(client, options);
+    this.stepOne = new EntranceQuery(client, options);
     this.stepTwo = new EntranceStepTwo(client, options);
   }
 
