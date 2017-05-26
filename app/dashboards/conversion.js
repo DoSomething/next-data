@@ -1,6 +1,5 @@
 import SignupQuery from '../queries/SignupQuery';
 import VisitorQuery from '../queries/VisitorQuery';
-import EntranceSignupsQuery from '../queries/EntranceSignupsQuery';
 
 const conversion = [
   {
@@ -14,19 +13,9 @@ const conversion = [
     column: 'total community page signups',
   },
   {
-    Query: EntranceSignupsQuery,
-    options: { page: 'community' },
-    column: 'community entrance signups',
-  },
-  {
     Query: SignupQuery,
     options: { page: 'action' },
     column: 'total action page signups',
-  },
-  {
-    Query: EntranceSignupsQuery,
-    options: { page: 'action' },
-    column: 'action entrance signups',
   },
   {
     Query: SignupQuery,
@@ -34,19 +23,9 @@ const conversion = [
     column: 'total scholarship page signups',
   },
   {
-    Query: EntranceSignupsQuery,
-    options: { page: 'scholarship' },
-    column: 'scholarship entrance signups',
-  },
-  {
     Query: SignupQuery,
     options: { page: 'faq' },
     column: 'total faq page signups',
-  },
-  {
-    Query: EntranceSignupsQuery,
-    options: { page: 'faq' },
-    column: 'faq entrance signups',
   },
   {
     Query: VisitorQuery,
@@ -88,20 +67,8 @@ const conversion = [
   {
     computation: true,
     operation: 'divide',
-    values: ['community entrance signups', 'total signups'],
-    column: 'percent of signups with community entrance',
-  },
-  {
-    computation: true,
-    operation: 'divide',
     values: ['total action page signups', 'total unaffiliated action visitors'],
     column: 'action conversion rate',
-  },
-  {
-    computation: true,
-    operation: 'divide',
-    values: ['action entrance signups', 'total signups'],
-    column: 'percent of signups with action entrance',
   },
   {
     computation: true,
@@ -112,20 +79,8 @@ const conversion = [
   {
     computation: true,
     operation: 'divide',
-    values: ['scholarship entrance signups', 'total signups'],
-    column: 'percent of signups with scholarship entrance',
-  },
-  {
-    computation: true,
-    operation: 'divide',
     values: ['total faq page signups', 'total unaffiliated faq visitors'],
     column: 'faq conversion rate',
-  },
-  {
-    computation: true,
-    operation: 'divide',
-    values: ['faq entrance signups', 'total signups'],
-    column: 'percent of signups with faq entrance',
   },
 ];
 

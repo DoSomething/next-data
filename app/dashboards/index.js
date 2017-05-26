@@ -2,6 +2,7 @@ import json2csv from 'json2csv';
 import Executor from '../Executor';
 import conversion from './conversion';
 import returns from './returns';
+import entrances from './entrances';
 import test from './test';
 import { makeCsvDownload } from '../helpers';
 
@@ -24,6 +25,7 @@ export async function make(client, campaignId, dashboard) {
     case 'conversion': queries = conversion; break;
     case 'returns': queries = returns; break;
     case 'test': queries = test; break;
+    case 'entrances': queries = entrances; break;
   }
 
   const computedDashboard = await Executor(client, campaignId, queries);
