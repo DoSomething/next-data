@@ -4,22 +4,23 @@ import VisitorQuery from '../queries/VisitorQuery';
 
 const test = [
   {
-    Query: EntranceSignupsQuery,
-    options: { page: 'community' },
-    column: 'community entrance signups',
-    skipCohort: true,
-  },
-  {
     Query: SignupQuery,
-    options: { page: 'community' },
-    column: 'total community signups',
+    options: {},
+    column: 'total signups',
     skipCohort: true,
   },
   {
-    Query: VisitorQuery,
-    options: { affiliated: false, page: 'scholarship' },
-    column: 'total unaffiliated scholarship visitors',
+    Query: EntranceSignupsQuery,
+    options: { page: 'scholarship' },
+    column: 'scholarship entrance signups',
     skipCohort: true,
+  },
+  {
+    skipCohort: true,
+    computation: true,
+    operation: 'divide',
+    values: ['scholarship entrance signups', 'total signups'],
+    column: 'percent of signups with scholarship entrance',
   },
 ];
 

@@ -41,6 +41,6 @@ export class Query {
 
   inheritQuery(query) {
     this.timeframe = query.timeframe;
-    this.filers = [...this.filters, ...query.filters];
+    this.filters = this.filters.concat(query.filters);
   }
 }
